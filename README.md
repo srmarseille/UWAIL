@@ -4,6 +4,11 @@ This repository contains the ROS 2 implementation of the UWAIL object mapping pi
 
 The setup instructions below are intended for testing the pipeline out of the box using recorded ROS 2 bags. After the setup section, the README explains how to run the pipeline and which main settings can be changed.
 
+## Demo
+
+[![UWAIL object mapping demo](https://drive.google.com/thumbnail?id=1T_-G5AriuLL0wzA-36fCmEVltHwJAT7E&sz=w1000)](https://drive.google.com/file/d/1T_-G5AriuLL0wzA-36fCmEVltHwJAT7E/view?usp=sharing)
+
+
 ## 1. Requirements
 
 This project was developed and tested with:
