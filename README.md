@@ -21,11 +21,8 @@ The instructions below assume that ROS 2 Humble is already installed.
 
 ### 2.1 Preliminaries
 
-Download the ROS 2 bags from Google Drive:
+Download the ROS 2 bags from Google Drive (upon request.)
 
-```text
-[LINK]
-```
 
 For example:
 
@@ -133,13 +130,10 @@ The most important settings are split over three files:
 - `start_delay_s`: delay between starting the lauch file, and the bag replay (allows launch file to correctly and fully start).
 - `bag_topics`: topics replayed when `use_vicon_localization = True`. When `use_vicon_localization = False`, all topics in the bag are replayed. (Supresses `tf` and `tf_static`)
 
-## AMCL localization
-
-TODO
 
 
 ## Acknoledgement:
-- OpenAI ChatGPT was used to help with the implementation of "supporting" parts of the system. Some examples are JSON state logger, visualization markers in `3d_bbox_marker_node.py` and `visualization_helpers.py`, setting up the ApproximateTimeSynchronizer, setting up launch files, some inline comments, and parts of the README.
+- OpenAI ChatGPT was used to help speed up the development of "supporting" parts of the system. Some examples are JSON state logger, visualization markers in `3d_bbox_marker_node.py` and `visualization_helpers.py`, setting up the ApproximateTimeSynchronizer, setting up launch files, some inline comments, and parts of the README.
 - The core perception and mapping logic was not generated with ChatGPT. For example: RGB-D back-projection, depth and point filtering, object observation construction, track definition, data association, Kalman updates, log-odds existence update, and visibility/free-space reasoning.
 - The design, implementation choices, validation, and final responsibility for the software remain my own.
 - The use of ChatGPT was used to support implemenation; to speed up repetitive work. It was not used to design, replace, or validate the core perception and mapping logic.

@@ -232,45 +232,6 @@ class ObjectMappingNode(Node):
             self.get_logger().warning(f"Could not get transform {target_frame} <- {source_frame}: {ex}")
             return None
 
-    # def make_observations_list(self, msg):
-    #     observations = []
-
-    #     for det in msg.observations:
-    #         det_header = det.header
-
-    #         if det_header.frame_id:
-    #             source_frame = det_header.frame_id
-    #             stamp = det_header.stamp
-    #             obs_header = det_header
-    #         else:
-    #             source_frame = msg.header.frame_id
-    #             stamp = msg.header.stamp
-    #             obs_header = msg.header
-
-    #         obs = self.observation_msg_to_observation(det, obs_header, source_frame, stamp)
-    #         if obs is not None:
-    #             observations.append(obs)
-
-    #     return observations
-
-
-    # def make_observations_list(self, msg):
-    #     """
-    #     Convert all 3d observations into list of Observation objects (defined in object_map.py)
-    #     """
-
-    #     observations = []
-    #     for det in msg.observations:
-
-    #         source_frame = msg.header.frame_id
-    #         stamp = msg.header.stamp
-    #         obs_header = msg.header
-
-    #         obs = self.observation_msg_to_observation(det, obs_header, source_frame, stamp)
-    #         if obs is not None:
-    #             observations.append(obs)
-
-    #     return observations
 
     def make_observations_list(self, msg):
         """
