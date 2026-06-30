@@ -1,0 +1,38 @@
+/**:
+  ros__parameters:
+    use_sim_time: true
+
+    image_topic: "/camera/color/image_raw/compressed"
+    depth_topic: "/camera/depth/image_raw"
+    color_info_topic: "/camera/color/camera_info"
+    odom_topic: "/mirte_base_controller/odom"
+
+    detections_topic: "/yolo/detections"
+    mask_topic: "/yolo/mask"
+    annotated_topic: "/yolo/annotated"
+    output_topic: "/yolo/detections_3d"
+    points_topic: "/yolo/object_points"
+
+    model_path: "/home/smarseille/Thesis/uwail_ws/src/UWAIL/yolo_seg_ros2/models/best_0605.pt"
+    detection_confidence: 0.75
+    publish_annotated: true
+
+    device: "cuda:0"
+    debug: false
+
+    max_detection_speed: 0.01
+    max_detection_depth_m: 2.0
+
+    target_frame: "world"
+    map_frame: "world"
+    debug_perception: false
+
+    markers_topic: "/yolo/bbox_markers"
+
+    max_match_cost: 14.16
+
+    localization_pose_cov_topic: "/synthetic_localization_pose_with_covariance"
+
+    pose_with_cov_topic: "/synthetic_localization_pose_with_covariance"
+
+

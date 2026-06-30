@@ -19,34 +19,34 @@ class YoloSegNode(Node):
         self.declare_parameter("model_path", "/home/smarseille/Thesis/ros2_thesis_ws/best_0605.pt")
 
         self.declare_parameter("detection_confidence", 0.75)
-        self.declare_parameter("publish_annotated", True)
-        self.declare_parameter("annotate_line_width", 2)
+        self.declare_parameter("publish_annotated", True) # if true, publish annotated image on yolo/annotated topic 
+        self.declare_parameter("annotate_line_width", 2) # thickness of bbox line
 
         self.declare_parameter("debug", False)
 
         self.declare_parameter("device", "cuda:0")
-        requested_device = str(self.get_parameter("device").value)
+        requested_device = self.get_parameter("device").value
 
-        self.image_topic = str(self.get_parameter("image_topic").value)
-        self.detections_topic = str(self.get_parameter("detections_topic").value)
-        self.mask_topic = str(self.get_parameter("mask_topic").value)
-        self.annotated_topic = str(self.get_parameter("annotated_topic").value)
+        self.image_topic = self.get_parameter("image_topic").value
+        self.detections_topic = self.get_parameter("detections_topic").value
+        self.mask_topic = self.get_parameter("mask_topic").value
+        self.annotated_topic = self.get_parameter("annotated_topic").value
 
         # Keep the model path configurable so the repo is not tied to one machine.
-        self.model_path = str(self.get_parameter("model_path").value)
+        self.model_path = self.get_parameter("model_path").value
         self.conf = float(self.get_parameter("detection_confidence").value)
         self.publish_annotated = bool(self.get_parameter("publish_annotated").value)
         self.annotate_line_width = int(self.get_parameter("annotate_line_width").value)
 
         self.debug = bool(self.get_parameter("debug").value)
 
-        self.core = YoloSegCore(
-            model_path=self.model_path,
-            device=requested_device,
-            debug=self.debug,
-            annotate_line_width=self.annotate_line_width,
-            publish_annotated=self.publish_annotated,
-            conf=self.conf)
+        # make Core class object
+        self.core = YoloSegCore(model_path=self.model_path,
+                                device=requested_device,
+                                debug=self.debug,
+                                annotate_line_width=self.annotate_line_width,
+                                publish_annotated=self.publish_annotated,
+                                conf=self.conf)
 
         # Store device (cuda or cpu)
         self.device = self.core.device
@@ -63,15 +63,11 @@ class YoloSegNode(Node):
         # Subscribe to RGB images
         self.sub = self.create_subscription(CompressedImage, self.image_topic, self.on_image, qos_profile_sensor_data)
 
+
+        # loggs for when starting with launch file
+        self.get_logger().info("yolo_seg_node started")
         if requested_device.startswith("cuda") and self.device == "cpu":
             self.get_logger().warn("CUDA not available, using CPU")
-
-        self.get_logger().info("yolo_seg_node started")
-        self.get_logger().info("image_topic: " + self.image_topic)
-        self.get_logger().info("detections_topic: " + self.detections_topic)
-        self.get_logger().info("mask_topic: " + self.mask_topic)
-        if self.publish_annotated:
-            self.get_logger().info("annotated_topic: " + self.annotated_topic)
         self.get_logger().info("model: " + self.model_path + " (" + self.device + ")")
 
 

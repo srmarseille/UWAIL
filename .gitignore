@@ -1,0 +1,32 @@
+mocap_simulation/config/amcl_params.yaml
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python build/test artifacts
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ROS / colcon
+install/
+log/
+.colcon/
+
+
+# Virtual environments
+venv/
+.venv/
+uwail_venv/
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
+
+
